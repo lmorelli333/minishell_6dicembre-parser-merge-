@@ -36,27 +36,23 @@ int	main(int ac, char **av, char **envp)
 	while (1)
 	{
 		general.args = readline("kitty shell>");
-		parser(&general);
-		/*while (general.lexer == NULL)
+		if (strlen(general.args) > 0)
 		{
-			printf("ciao");
-			general.args = readline("kitty shell>");
-		}*/
-		tmp = general.lexer;
-		execute_external_command(tmp->command2);
-		wait(NULL);
-		while (tmp != NULL)
-		{	
-			printf("token %i\n", tmp->token);
-			printf("pipe steatus %i\n", tmp->pipe_status);
-			printf("command %s\n", tmp->command);
-			
-			print_matrix(tmp->command2);
-			printf("\n");
-			tmp = tmp->next;
-		}
-		
+			parser(&general);
+			tmp = general.lexer;
+			execute_external_command(tmp->command2);
+			wait(NULL);
+			while (tmp != NULL)
+			{	
+				printf("token %i\n", tmp->token);
+				printf("pipe steatus %i\n", tmp->pipe_status);
+				printf("command %s\n", tmp->command);
+				print_matrix(tmp->command2);
+				printf("\n");
+				tmp = tmp->next;
+			}
 		afalcons(general.lexer);
 		general.lexer = NULL;
+		}
 	}
 }
