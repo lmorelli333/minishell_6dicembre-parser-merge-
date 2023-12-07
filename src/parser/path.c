@@ -41,7 +41,10 @@ char *pathfinder(char *command, char **path)
 		i++;
 	}
 	if (result == NULL)
+	{
 		fprintf(stderr, "Il comando '%s' non è stato trovato nei percorsi specificati.\n", command);
+		result = "";
+	}
 	return (result);
 }
 int	build_matrix(char *str, t_lex *node, t_general *general)
