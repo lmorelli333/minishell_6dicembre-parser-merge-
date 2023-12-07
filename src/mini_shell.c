@@ -12,6 +12,17 @@
 
 #include "../includes/mini_shell.h"
 
+static int is_whitespace_input(const char *str)
+{
+    while (*str)
+	{
+        if (iswhite(*str))
+            return 0;
+        str++;
+    }
+    return (1);
+}
+
 void	init(t_general *general, char **envp)
 {
 	general->lexer = NULL;
@@ -36,7 +47,7 @@ int	main(int ac, char **av, char **envp)
 	while (1)
 	{
 		general.args = readline("kitty shell>");
-		if (strlen(general.args) > 0)
+		if (strlen(general.args) > 0 && !is_whitespace_input(general.args))
 		{
 			parser(&general);
 			tmp = general.lexer;
