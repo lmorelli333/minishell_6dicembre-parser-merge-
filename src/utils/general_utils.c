@@ -57,6 +57,5 @@ void	print_matrix(char **matrix)
 		printf("%s\n", matrix[i]);
 		i++;
 	}
-	execute_external_command(matrix);
 	return;
 }

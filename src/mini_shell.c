@@ -29,7 +29,7 @@ int	main(int ac, char **av, char **envp)
 
 	if (ac != 1)
 	{
-		printf(RED "error dumb imput\n" RESET);
+		printf(RED "error dumb input\n" RESET);
 		return (0);
 	}
 	init(&general, envp);
@@ -37,18 +37,26 @@ int	main(int ac, char **av, char **envp)
 	{
 		general.args = readline("kitty shell>");
 		parser(&general);
-		tmp = general.lexer;
-		while (tmp != NULL)
+		/*while (general.lexer == NULL)
 		{
+			printf("ciao");
+			general.args = readline("kitty shell>");
+		}*/
+		tmp = general.lexer;
+		execute_external_command(tmp->command2);
+		wait(NULL);
+		while (tmp != NULL)
+		{	
 			printf("token %i\n", tmp->token);
 			printf("pipe steatus %i\n", tmp->pipe_status);
 			printf("command %s\n", tmp->command);
+			
 			print_matrix(tmp->command2);
 			printf("\n");
 			tmp = tmp->next;
 		}
+		
 		afalcons(general.lexer);
-		//
 		general.lexer = NULL;
 	}
 }

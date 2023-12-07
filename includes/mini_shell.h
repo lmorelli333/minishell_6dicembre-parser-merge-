@@ -25,6 +25,8 @@
 # include "visual.h"
 # include "utils.h"
 
+# include <sys/wait.h>
+
 #endif
 
 //appunti
